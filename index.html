@@ -229,7 +229,7 @@
         <!-- Formulario de login -->
         <div class="form-box" id="login-form">
             <h3>Iniciar sesión</h3>
-            <form action="pagina.html" method="POST">
+            <form id="login-form-submit">
                 <input type="email" name="email" placeholder="Correo electrónico" required>
                 <input type="password" name="password" placeholder="Contraseña" required>
                 <button type="submit">Iniciar sesión</button>
@@ -240,7 +240,7 @@
         <!-- Formulario de registro -->
         <div class="form-box" id="register-form" style="display: none;">
             <h3>Registrarse</h3>
-            <form action="pagina.html" method="POST">
+            <form id="register-form-submit">
                 <input type="text" name="fullname" placeholder="Nombre completo" required>
                 <input type="email" name="email" placeholder="Correo electrónico" required>
                 <input type="password" name="password" placeholder="Contraseña" required>
@@ -265,6 +265,22 @@
             document.getElementById("login-form").style.display = "none";
             document.getElementById("register-form").style.display = "block";
         }
+
+        // Redirección simulada después del envío
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.querySelector('#login-form-submit');
+            const registerForm = document.querySelector('#register-form-submit');
+
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault(); // Evita el envío real
+                window.location.href = 'inicio.html'; // Redirige
+            });
+
+            registerForm.addEventListener('submit', function (e) {
+                e.preventDefault(); // Evita el envío real
+                window.location.href = 'inicio.html'; // Redirige
+            });
+        });
     </script>
 
 </body>
