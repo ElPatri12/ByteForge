@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ByteForge</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+        :root {
+            --neon-blue: #00f0ff;
+            --neon-pink: #ff00c8;
+            --bg-dark: #0a0a0a;
+            --card-bg: #151515;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--neon-blue);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #292929);
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        nav {
+            background-color: #111;
+            text-align: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: white;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--neon-pink);
+            text-shadow: 0 0 8px var(--neon-pink);
+        }
+
+        p, li {
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        input, button, textarea {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            font-size: 16px;
+            background: #222;
+            color: #fff;
+            border: 1px solid var(--neon-blue);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
+            border: none;
+            color: black;
+            font-weight: bold;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        footer {
+            background: #111;
+            color: var(--neon-pink);
+            text-align: center;
+            padding: 20px;
+            text-shadow: 0 0 8px var(--neon-pink);
+            margin-top: 40px;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes neonGlow {
+            from { text-shadow: 0 0 10px var(--neon-pink); }
+            to { text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-blue); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Bienvenido a ByteForge
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#temas">Temas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="introduccion">
+            <h2>¿Qué es ByteForge?</h2>
+            <p>ByteForge es una empresa de informática especializada en el desarrollo de software a medida, soluciones de ciberseguridad y consultoría tecnológica. Nuestra misión es forjar herramientas digitales innovadoras que optimicen procesos empresariales y potencien la transformación digital.</p>
+        </section>
+
+        <section id="temas">
+            <h2>Temas Principales</h2>
+            <ul>
+                <li>Programación</li>
+                <li>Ciberseguridad</li>
+                <li>Redes</li>
+                <li>Hardware y Software</li>
+                <li>Gaming</li>
+            </ul>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>Déjanos tu mensaje:</p>
+            <input type="text" id="nombre" placeholder="Tu nombre">
+            <input type="email" id="correo" placeholder="Tu correo">
+            <textarea id="mensaje" rows="4" placeholder="Escribe tu mensaje"></textarea>
+            <button onclick="enviarMensaje()">Enviar</button>
+            <p id="respuesta"></p>
+        </section>
+
+        <button onclick="window.open('tienda.html', '_blank')">Tienda Online</button>
+    </div>
+
+    <footer>
+        &copy; 2025 Wilmer L. y Dahiana E. - Todos los derechos reservados.
+    </footer>
+
+    <!-- EmailJS script -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("user_9HDcK7fOa68eRHJplgh6B"); // Reemplaza con tu ID real
+        })();
+
+        function enviarMensaje() {
+            const nombre = document.getElementById('nombre').value;
+            const correo = document.getElementById('correo').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            if (nombre && correo && mensaje) {
+                emailjs.send("service_ayx1zkq", "YOUR_TEMPLATE_ID", {
+                    from_name: nombre,
+                    message: mensaje,
+                    from_email: correo
+                }).then(function(response) {
+                    document.getElementById('respuesta').innerText = 'Gracias por tu mensaje, ' + nombre + '!';
+                }, function(error) {
+                    document.getElementById('respuesta').innerText = 'Error al enviar. Intenta más tarde.';
+                    console.error('Error:', error);
+                });
+            } else {
+                document.getElementById('respuesta').innerText = 'Por favor, completa todos los campos.';
+            }
+        }
+    </script>
+
+</body>
+</html>

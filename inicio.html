@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteForge - Informática</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #121212;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      background-color: #00bcd4;
+      border-radius: 50%;
+    }
+
+    .menu {
+      display: flex;
+      gap: 15px;
+    }
+
+    .menu-item {
+      background-color: #00bcd4;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .menu-item a {
+      text-decoration: none;
+      color: #121212;
+    }
+
+    .menu-item:hover {
+      background-color: #00acc1;
+    }
+
+    .main-title {
+      text-align: center;
+      margin: 40px 0 30px;
+      font-size: 48px;
+      color: #00e5ff;
+      text-shadow: 1px 1px 10px #00bcd4;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto 60px auto;
+      padding: 0 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.3s ease;
+      position: relative;
+      transform: scale(1);
+    }
+
+    .card:active {
+      animation: expandCard 0.5s ease forwards;
+    }
+
+    @keyframes expandCard {
+      0% {
+        transform: scale(1);
+        background-color: rgba(0, 188, 212, 0.1);
+      }
+      50% {
+        transform: scale(1.1) rotate(5deg);
+      }
+      100% {
+        transform: scale(1);
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 188, 212, 0.4);
+    }
+
+    .card h3 {
+      color: #00e5ff;
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .blur-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 100;
+      display: none;
+    }
+
+    .zoomed-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      background-color: #1f1f1f;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 700px;
+      width: 90%;
+      z-index: 101;
+      box-shadow: 0 0 30px rgba(0, 188, 212, 0.5);
+      display: none;
+      transition: transform 0.5s ease;
+    }
+
+    .zoomed-container.show {
+      display: block;
+    }
+
+    .zoomed-container h3 {
+      color: #00e5ff;
+      margin-bottom: 20px;
+    }
+
+    .zoomed-container p {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      color: #ccc;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #121212;
+      padding: 15px;
+      text-align: center;
+      color: #aaa;
+    }
+
+    @media (max-width: 1200px) {
+      .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"></div>
+    <div class="menu">
+      <div class="menu-item"><a href="pagina.html">Pagina</a></div>
+      <div class="menu-item"><a href="tienda.html">Tienda</a></div>
+    </div>
+  </header>
+
+  <h1 class="main-title">Explora la Informática</h1>
+
+  <div class="blur-background" id="blur-bg"></div>
+
+  <div class="zoomed-container" id="zoomed-card">
+    <div class="close-btn" onclick="closeCard()">×</div>
+    <h3 id="zoomed-title"></h3>
+    <p id="zoomed-text"></p>
+  </div>
+
+  <div class="cards-container">
+    <div class="card" onclick="zoomCard('¿Qué es la informática en programación?', 'Es el arte de crear tecnología con código. Aprender programación es como tener un superpoder: puedes construir apps, juegos, IA y resolver problemas reales.')">
+      <h3>¿Qué es la informática en programación?</h3>
+      <p>Conviértete en creador del futuro usando solo tu mente y una computadora.</p>
+    </div>
+    <div class="card" onclick="zoomCard('¿Por qué elegir esta carrera?', 'Porque el mundo necesita más mentes digitales. Trabaja desde casa, gana bien y haz lo que amas en un entorno global.')">
+      <h3>¿Por qué elegir esta carrera?</h3>
+      <p>El futuro es digital. ¡Aprovecha esta oportunidad única!</p>
+    </div>
+    <div class="card" onclick="zoomCard('Requisitos básicos', 'Solo necesitas curiosidad, ganas de aprender y una mente lógica. Todo lo demás lo aprenderás en el camino.')">
+      <h3>Requisitos básicos</h3>
+      <p>No necesitas experiencia previa. ¡Solo motivación!</p>
+    </div>
+    <div class="card" onclick="zoomCard('¿Qué podrás lograr?', 'Desde aplicaciones móviles hasta inteligencia artificial. Tu imaginación es el límite. ¡El mundo necesita tus ideas!')">
+      <h3>¿Qué podrás lograr?</h3>
+      <p>Crea tu propio camino en la industria tecnológica.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 ByteForge. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function zoomCard(title, text) {
+      document.getElementById('zoomed-title').textContent = title;
+      document.getElementById('zoomed-text').textContent = text;
+      document.getElementById('zoomed-card').classList.add('show');
+      document.getElementById('blur-bg').style.display = 'block';
+    }
+
+    function closeCard() {
+      document.getElementById('zoomed-card').classList.remove('show');
+      document.getElementById('blur-bg').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

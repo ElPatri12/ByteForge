@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteForge - Programación y Creación de Videojuegos</title>
+    <style>
+        /* Reset de estilos básicos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Diseño del header */
+        header {
+            background-color: #111;
+            color: #00bcd4;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.5);
+            animation: fadeIn 1s ease-out;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            text-shadow: 0 0 5px rgba(0, 188, 212, 1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #00bcd4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            text-shadow: 0 0 5px rgba(0, 188, 212, 1);
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0, 188, 212, 1);
+        }
+
+        /* Sección principal */
+        .main-section {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .main-section h2 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0, 188, 212, 1);
+        }
+
+        .main-section p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .main-section button {
+            padding: 15px 25px;
+            background-color: #00bcd4;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+        }
+
+        .main-section button:hover {
+            background-color: #111;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 188, 212, 1);
+        }
+
+        /* Formularios */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .form-box {
+            background-color: #222;
+            padding: 30px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+            animation: scaleIn 1s ease-out;
+        }
+
+        .form-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #00bcd4;
+            text-shadow: 0 0 10px rgba(0, 188, 212, 1);
+        }
+
+        .form-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 1.1em;
+            background-color: #333;
+            color: white;
+        }
+
+        .form-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #00bcd4;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+        }
+
+        .form-box button:hover {
+            background-color: #111;
+            box-shadow: 0 0 20px rgba(0, 188, 212, 1);
+        }
+
+        .form-box a {
+            display: block;
+            margin-top: 10px;
+            font-size: 1em;
+            color: #00bcd4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .form-box a:hover {
+            color: #fff;
+        }
+
+        footer {
+            background-color: #111;
+            color: #00bcd4;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            text-shadow: 0 0 5px rgba(0, 188, 212, 1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>ByteForge</h1>
+            </div>
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="#">Desarrollo de Software</a></li>
+                <li><a href="#">Creación de Videojuegos</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="main-section">
+        <h2>Bienvenido a ByteForge</h2>
+        <p>Somos una empresa especializada en programación y creación de videojuegos. Únete a nosotros y forma parte de la innovación tecnológica.</p>
+        <button onclick="showLogin()">Iniciar sesión</button>
+        <button onclick="showRegister()">Registrarse</button>
+    </section>
+
+    <div class="form-container" id="form-container">
+        <!-- Formulario de login -->
+        <div class="form-box" id="login-form">
+            <h3>Iniciar sesión</h3>
+            <form action="pagina.html" method="POST">
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar sesión</button>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </form>
+        </div>
+
+        <!-- Formulario de registro -->
+        <div class="form-box" id="register-form" style="display: none;">
+            <h3>Registrarse</h3>
+            <form action="pagina.html" method="POST">
+                <input type="text" name="fullname" placeholder="Nombre completo" required>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required>
+                <button type="submit">Registrarse</button>
+                <a href="#">¿Ya tienes cuenta? Inicia sesión</a>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ByteForge. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function showLogin() {
+            document.getElementById("login-form").style.display = "block";
+            document.getElementById("register-form").style.display = "none";
+        }
+
+        function showRegister() {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("register-form").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
